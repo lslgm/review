@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--파일이 종류가 mybatis용-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//
+              EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--mybatis를 사용할 DAO패키지를 지정-->
+
+<mapper namespace="com.bucheon.review.DAO.StudentDAO">
+    <select id="selectAllStudent" resultType="StudentVO">
+                <![CDATA[
+        SELECT * FROM student_tbl
+        ]]>
+        </select>
+
+    <insert id="insertStudent">
+            <![CDATA[
+        INSERT INTO student_tbl(sno, sname, sclass, saddress,sphone)
+        VALUES (#{sno},#{sname},#{sclass},#{saddress},#{sphone})
+        ]]>
+        </insert>
+
+    <select id="selectUpdate" resultType="StudentVO"><!-- 수정할 해당번의자료를 읽어온다-->
+        <![CDATA[
+        select  * from student_tbl where sno=#{sno}
+        ]]>
+    </select>
+
+    <update id="updateStudent">
+            <![CDATA[
+        UPDATE student_tbl SET sno=#{sno},sname=#{sname},sclass=#{sclass},
+                              saddress=#{saddress},sphone=#{sphone} WHERE sno = #{sno}
+        ]]>
+        </update>
+
+    <delete id="deleteStudent">
+        <![CDATA[
+        DELETE FROM student_tbl WHERE sno=#{sno}
+        ]]>
+    </delete>
+    
+</mapper>

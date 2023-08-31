@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--파일이 종류가 mybatis용-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//
+              EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--mybatis를 사용할 DAO패키지를 지정-->
+
+<mapper namespace="com.bucheon.review.DAO.ReviewDAO">
+    <!--학생번호가 같으면 합치기-->
+    <select id="selectAllReview" resultType="ReviewVO">
+        <![CDATA[
+        SELECT a.*, b.sname FROM review_tbl a left join student_tbl b on a.sno=b.sno
+        ]]>
+        </select>
+
+    <insert id="insertReview">
+        <![CDATA[
+        INSERT INTO review_tbl(rno,sno, rsubject, rcontent, rgrade)
+        VALUES (#{rno},#{sno},#{rsubject},#{rcontent},#{rgrade})
+        ]]>
+        </insert>
+
+    <select id="selectUpdate" resultType="ReviewVO"><!-- 수정할 해당번의자료를 읽어온다-->
+        <![CDATA[
+        select  *  from review_tbl  where rno=#{rno}
+        ]]>
+    </select>
+
+    <update id="updateReview">
+            <![CDATA[
+        UPDATE review_tbl SET sno=#{sno},rsubject=#{rsubject},rcontent=#{rcontent},
+                              rgrade=#{rgrade}  WHERE rno = #{rno}
+        ]]>
+        </update>
+
+    <delete id="deleteReview">
+        <![CDATA[
+        DELETE FROM review_tbl WHERE rno=#{rno}
+        ]]>
+    </delete>
+</mapper>

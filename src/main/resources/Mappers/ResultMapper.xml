@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--파일이 종류가 mybatis용-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//
+              EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--mybatis를 사용할 DAO패키지를 지정-->
+
+<mapper namespace="com.bucheon.review.DAO.ResultDAO">
+    <select id="selectAllResult" resultType="ResultVO">
+        <![CDATA[
+            SELECT a.*, b.sname, b.sphone FROM review_tbl a left join student_tbl b on a.sno=b.sno where a.sno=#{sno}
+        ]]>
+        </select>
+    
+</mapper>
